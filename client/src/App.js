@@ -5,8 +5,14 @@ import errorGif from "./images/error.gif";
 import "./App.css";
 
 function App() {
-  const { notes, loading, error, handleCreateNote, handleUpdateNote } =
-    useNotes();
+  const {
+    notes,
+    loading,
+    error,
+    handleCreateNote,
+    handleUpdateNote,
+    handleDeleteNote,
+  } = useNotes();
 
   return (
     <div className="app">
@@ -41,7 +47,11 @@ function App() {
         </div>
       )}
       {!loading && !error && (
-        <NoteList notes={notes} onEdit={handleUpdateNote} />
+        <NoteList
+          notes={notes}
+          onEdit={handleUpdateNote}
+          onDelete={handleDeleteNote}
+        />
       )}
     </div>
   );

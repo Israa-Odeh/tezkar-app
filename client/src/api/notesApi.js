@@ -29,3 +29,11 @@ export const updateNote = async (id, updatedNote) => {
   }
   return response.json();
 };
+
+export const deleteNote = async (id) => {
+  const response = await fetch(`/api/notes/${id}`, { method: "DELETE" });
+  if (!response.ok) {
+    throw new Error("Failed to delete note");
+  }
+  return response.json();
+};

@@ -20,7 +20,7 @@ const Note = ({ note, onEdit, onDelete }) => {
   };
 
   const handleConfirmDelete = () => {
-    onDelete(note.id);
+    onDelete(note._id);
     setShowConfirmation(false);
   };
 
