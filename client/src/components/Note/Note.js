@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import ConfirmationDialog from "../ConfirmationDialog";
 import NoteManagementModal from "../NoteManagementModal";
+import { formatDate } from "utils/formatDate";
 import "./note.css";
 
 const Note = ({ note, onEdit, onDelete }) => {
@@ -31,7 +32,9 @@ const Note = ({ note, onEdit, onDelete }) => {
           {note.title}
         </h2>
         <p className="note__content">{note.content}</p>
-        <span className="note__creation-date">{note.creationDate}</span>
+        <span className="note__creation-date">
+          {formatDate(note.creationDate)}
+        </span>
       </div>
       <button
         className="note__delete-button"
