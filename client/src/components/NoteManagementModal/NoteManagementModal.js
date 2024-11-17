@@ -4,8 +4,14 @@ import "./noteManagementModal.css";
 
 const NoteManagementModal = ({
   note = { title: "", content: "" },
+  onNoteSubmit,
   onClose,
 }) => {
+  const handleSubmit = (noteData) => {
+    onNoteSubmit(noteData);
+    onClose();
+  };
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -13,9 +19,9 @@ const NoteManagementModal = ({
           <MdClose size={24} />
         </button>
         {note.title && note.content ? (
-          <NoteManagementForm note={note} />
+          <NoteManagementForm note={note} onSubmit={handleSubmit} />
         ) : (
-          <NoteManagementForm />
+          <NoteManagementForm onSubmit={handleSubmit} />
         )}
       </div>
     </div>

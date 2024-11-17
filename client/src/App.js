@@ -5,11 +5,11 @@ import errorGif from "./images/error.gif";
 import "./App.css";
 
 function App() {
-  const { notes, loading, error } = useNotes();
+  const { notes, loading, error, handleCreateNote } = useNotes();
 
   return (
     <div className="app">
-      <TopBar />
+      <TopBar onCreateNote={handleCreateNote} />
       {loading && (
         <div className="app__status">
           <img

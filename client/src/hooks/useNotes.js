@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchNotes } from "api/notesApi";
+import { fetchNotes, createNote } from "api/notesApi";
 
 const useNotes = () => {
   const [notes, setNotes] = useState([]);
@@ -21,10 +21,20 @@ const useNotes = () => {
     loadNotes();
   }, []);
 
+  const handleCreateNote = async (note) => {
+    try {
+      const createdNote = await createNote(note);
+      setNotes((prevNotes) => [...prevNotes, createdNote]);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return {
     notes,
     loading,
     error,
+    handleCreateNote,
   };
 };
 

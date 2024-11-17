@@ -5,7 +5,7 @@ import SearchBar from "../SearchBar";
 import NoteManagementModal from "../NoteManagementModal";
 import "./topBar.css";
 
-const TopBar = () => {
+const TopBar = ({ onCreateNote }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalClose = () => setIsModalOpen(false);
@@ -35,7 +35,12 @@ const TopBar = () => {
         </button>
       </div>
 
-      {isModalOpen && <NoteManagementModal onClose={handleModalClose} />}
+      {isModalOpen && (
+        <NoteManagementModal
+          onNoteSubmit={onCreateNote}
+          onClose={handleModalClose}
+        />
+      )}
     </div>
   );
 };
