@@ -27,7 +27,9 @@ const Note = ({ note, onEdit, onDelete }) => {
   return (
     <div className="note">
       <div className="note__details" onClick={handleModalOpen}>
-        <h2 className="note__title">{note.title}</h2>
+        <h2 className="note__title" title={note.title}>
+          {note.title}
+        </h2>
         <p className="note__content">{note.content}</p>
         <span className="note__creation-date">{note.creationDate}</span>
       </div>
