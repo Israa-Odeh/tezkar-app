@@ -17,3 +17,15 @@ export const createNote = async (note) => {
   }
   return response.json();
 };
+
+export const updateNote = async (id, updatedNote) => {
+  const response = await fetch(`/api/notes/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedNote),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update note");
+  }
+  return response.json();
+};

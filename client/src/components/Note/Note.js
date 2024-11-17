@@ -4,7 +4,7 @@ import ConfirmationDialog from "../ConfirmationDialog";
 import NoteManagementModal from "../NoteManagementModal";
 import "./note.css";
 
-const Note = ({ note, onDelete }) => {
+const Note = ({ note, onEdit, onDelete }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -49,7 +49,11 @@ const Note = ({ note, onDelete }) => {
       )}
 
       {isModalOpen && (
-        <NoteManagementModal note={note} onClose={handleModalClose} />
+        <NoteManagementModal
+          note={note}
+          onNoteSubmit={onEdit}
+          onClose={handleModalClose}
+        />
       )}
     </div>
   );

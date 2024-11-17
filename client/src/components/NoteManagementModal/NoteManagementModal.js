@@ -8,7 +8,11 @@ const NoteManagementModal = ({
   onClose,
 }) => {
   const handleSubmit = (noteData) => {
-    onNoteSubmit(noteData);
+    if (note._id) {
+      onNoteSubmit(note._id, noteData);
+    } else {
+      onNoteSubmit(noteData);
+    }
     onClose();
   };
 
