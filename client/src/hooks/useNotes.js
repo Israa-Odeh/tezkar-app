@@ -4,7 +4,9 @@ import { fetchNotes, createNote, updateNote, deleteNote } from "api/notesApi";
 const useNotes = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+  const [operationError, setOperationError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const loadNotes = async () => {
@@ -13,7 +15,7 @@ const useNotes = () => {
         const { notes } = await fetchNotes();
         setNotes(notes);
       } catch (err) {
-        setError(err.message);
+        setFetchError(err.message);
       } finally {
         setLoading(false);
       }
@@ -21,12 +23,18 @@ const useNotes = () => {
     loadNotes();
   }, []);
 
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      note.content.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const handleCreateNote = async (note) => {
     try {
       const createdNote = await createNote(note);
       setNotes((prevNotes) => [...prevNotes, createdNote]);
     } catch (err) {
-      setError(err.message);
+      setOperationError(err.message);
     }
   };
 
@@ -39,7 +47,7 @@ const useNotes = () => {
         )
       );
     } catch (err) {
-      setError(err.message);
+      setOperationError(err.message);
     }
   };
 
@@ -48,17 +56,23 @@ const useNotes = () => {
       await deleteNote(id);
       setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
     } catch (err) {
-      setError(err.message);
+      setOperationError(err.message);
     }
   };
 
+  const handleSearchNotes = (query) => {
+    setSearchQuery(query);
+  };
+
   return {
-    notes,
+    notes: filteredNotes,
     loading,
-    error,
+    fetchError,
+    operationError,
     handleCreateNote,
     handleUpdateNote,
     handleDeleteNote,
+    handleSearchNotes,
   };
 };
 

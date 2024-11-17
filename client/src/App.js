@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useNotes from "./hooks/useNotes";
 import { TopBar, NoteList } from "./components";
 import loadingGif from "./images/loading.gif";
@@ -8,15 +9,23 @@ function App() {
   const {
     notes,
     loading,
-    error,
+    fetchError,
+    operationError,
     handleCreateNote,
     handleUpdateNote,
     handleDeleteNote,
+    handleSearchNotes,
   } = useNotes();
+
+  useEffect(() => {
+    if (operationError) {
+      alert(`Error: ${operationError}`);
+    }
+  }, [operationError]);
 
   return (
     <div className="app">
-      <TopBar onCreateNote={handleCreateNote} />
+      <TopBar onCreateNote={handleCreateNote} onSearch={handleSearchNotes} />
       {loading && (
         <div className="app__status">
           <img
@@ -31,7 +40,7 @@ function App() {
           </p>
         </div>
       )}
-      {error && (
+      {fetchError && (
         <div className="app__status">
           <img
             className="app__status-image"
@@ -46,7 +55,7 @@ function App() {
           </p>
         </div>
       )}
-      {!loading && !error && (
+      {!loading && !fetchError && (
         <NoteList
           notes={notes}
           onEdit={handleUpdateNote}

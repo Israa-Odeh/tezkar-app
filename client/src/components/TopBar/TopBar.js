@@ -5,7 +5,7 @@ import SearchBar from "../SearchBar";
 import NoteManagementModal from "../NoteManagementModal";
 import "./topBar.css";
 
-const TopBar = ({ onCreateNote }) => {
+const TopBar = ({ onCreateNote, onSearch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalClose = () => setIsModalOpen(false);
@@ -25,7 +25,7 @@ const TopBar = ({ onCreateNote }) => {
         <h1 className="topbar__title">Tezkar</h1>
       </div>
       <div className="topbar__controls">
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
         <button
           className="topbar__add-note-button"
           type="button"
