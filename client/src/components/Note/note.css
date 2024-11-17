@@ -51,6 +51,7 @@
   background-color: transparent;
   border: none;
   display: none;
+  cursor: pointer;
 }
 
 .note:hover .note__delete-button {
