@@ -14,6 +14,12 @@ const AppShellLayout = () => {
     handleSearchNotes,
   } = useNotes();
 
+  useEffect(() => {
+    if (operationError) {
+      alert(`Error: ${operationError}`);
+    }
+  }, [operationError]);
+
   return (
     <div className="app">
       <TopBar onCreateNote={handleCreateNote} onSearch={handleSearchNotes} />
@@ -23,7 +29,6 @@ const AppShellLayout = () => {
         notes={notes}
         handleUpdateNote={handleUpdateNote}
         handleDeleteNote={handleDeleteNote}
-        operationError={operationError}
       />
     </div>
   );

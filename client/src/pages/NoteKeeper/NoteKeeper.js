@@ -10,14 +10,7 @@ const NoteKeeper = ({
   notes,
   handleUpdateNote,
   handleDeleteNote,
-  operationError,
 }) => {
-  useEffect(() => {
-    if (operationError) {
-      alert(`Error: ${operationError}`);
-    }
-  }, [operationError]);
-
   return (
     <>
       {loading && (
