@@ -2,13 +2,13 @@ import { useState } from "react";
 import "./noteManagementForm.css";
 
 const NoteManagementForm = ({
-  note = { title: "", content: "" },
+  note = { _id: "", title: "", content: "" },
   onSubmit,
 }) => {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
 
-  const isNewNote = !note.title && !note.content;
+  const isNewNote = !note._id;
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -37,3 +37,11 @@ export const deleteNote = async (id) => {
   }
   return response.json();
 };
+
+export const searchNotes = async (query) => {
+  const response = await fetch(`/api/notes/search?query=${query}`);
+  if (!response.ok) {
+    throw new Error("Failed to search notes");
+  }
+  return response.json();
+};

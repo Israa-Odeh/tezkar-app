@@ -1,0 +1,27 @@
+.app__status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  height: calc(100vh - 80px);
+}
+
+.app__status-text {
+  font-size: 1rem;
+  font-family: "Delius", serif;
+  max-width: 300px;
+}
+
+@media screen and (max-width: 1024px) {
+  .app__status-image {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app__status-text {
+    max-width: 80%;
+  }
+}

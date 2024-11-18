@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
-import ConfirmationDialog from "../ConfirmationDialog";
-import NoteManagementModal from "../NoteManagementModal";
+import { ConfirmationDialog, NoteManagementModal } from "components";
 import { formatDate } from "utils/formatDate";
 import "./note.css";
 

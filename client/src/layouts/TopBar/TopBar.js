@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { RiStickyNoteAddLine } from "react-icons/ri";
 import stickyNote from "images/stickyNote.png";
-import SearchBar from "../SearchBar";
-import NoteManagementModal from "../NoteManagementModal";
+import { SearchBar, NoteManagementModal } from "components";
 import "./topBar.css";
 
 const TopBar = ({ onCreateNote, onSearch }) => {

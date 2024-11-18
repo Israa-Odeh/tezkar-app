@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
-import { fetchNotes, createNote, updateNote, deleteNote } from "api/notesApi";
+import {
+  fetchNotes,
+  createNote,
+  updateNote,
+  deleteNote,
+  searchNotes,
+} from "api/notesApi";
 
 const useNotes = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [operationError, setOperationError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const loadNotes = async () => {
@@ -22,12 +27,6 @@ const useNotes = () => {
     };
     loadNotes();
   }, []);
-
-  const filteredNotes = notes.filter(
-    (note) =>
-      note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      note.content.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const handleCreateNote = async (note) => {
     try {
@@ -60,12 +59,17 @@ const useNotes = () => {
     }
   };
 
-  const handleSearchNotes = (query) => {
-    setSearchQuery(query);
+  const handleSearchNotes = async (query) => {
+    try {
+      const searchResults = await searchNotes(query);
+      setNotes(searchResults);
+    } catch (err) {
+      setOperationError(err.message);
+    }
   };
 
   return {
-    notes: filteredNotes,
+    notes,
     loading,
     fetchError,
     operationError,

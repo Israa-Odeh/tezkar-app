@@ -1,9 +1,9 @@
 import { MdClose } from "react-icons/md";
-import NoteManagementForm from "../NoteManagementForm";
+import { NoteManagementForm } from "./components";
 import "./noteManagementModal.css";
 
 const NoteManagementModal = ({
-  note = { title: "", content: "" },
+  note = { _id: "", title: "", content: "" },
   onNoteSubmit,
   onClose,
 }) => {
@@ -22,7 +22,7 @@ const NoteManagementModal = ({
         <button className="modal-close" onClick={onClose}>
           <MdClose size={24} />
         </button>
-        {note.title && note.content ? (
+        {note._id ? (
           <NoteManagementForm note={note} onSubmit={handleSubmit} />
         ) : (
           <NoteManagementForm onSubmit={handleSubmit} />
