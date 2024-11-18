@@ -1,6 +1,7 @@
 import useNotes from "hooks/useNotes";
 import TopBar from "layouts/TopBar";
 import NoteKeeper from "pages/NoteKeeper";
+import { useEffect } from "react";
 
 const AppShellLayout = () => {
   const {

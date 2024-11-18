@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { NoteList } from "./components";
 import loadingGif from "images/loading.gif";
 import errorGif from "images/error.gif";
