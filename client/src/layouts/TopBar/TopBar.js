@@ -36,7 +36,7 @@ const TopBar = ({ onCreateNote, onSearch }) => {
 
       {isModalOpen && (
         <NoteManagementModal
-          onNoteSubmit={onCreateNote}
+          onSubmit={onCreateNote}
           onClose={handleModalClose}
         />
       )}

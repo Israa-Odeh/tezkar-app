@@ -24,6 +24,10 @@ const Note = ({ note, onEdit, onDelete }) => {
     setShowConfirmation(false);
   };
 
+  const handleEdit = (noteData) => {
+    onEdit(note._id, noteData);
+  };
+
   return (
     <div className="note">
       <div className="note__details" onClick={handleModalOpen}>
@@ -55,7 +59,7 @@ const Note = ({ note, onEdit, onDelete }) => {
       {isModalOpen && (
         <NoteManagementModal
           note={note}
-          onNoteSubmit={onEdit}
+          onSubmit={handleEdit}
           onClose={handleModalClose}
         />
       )}

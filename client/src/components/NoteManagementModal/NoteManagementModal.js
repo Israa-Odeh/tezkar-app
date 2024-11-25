@@ -4,15 +4,11 @@ import "./noteManagementModal.css";
 
 const NoteManagementModal = ({
   note = { _id: "", title: "", content: "" },
-  onNoteSubmit,
+  onSubmit,
   onClose,
 }) => {
   const handleSubmit = (noteData) => {
-    if (note._id) {
-      onNoteSubmit(note._id, noteData);
-    } else {
-      onNoteSubmit(noteData);
-    }
+    onSubmit(noteData);
     onClose();
   };
 
@@ -22,11 +18,7 @@ const NoteManagementModal = ({
         <button className="modal-close" onClick={onClose}>
           <MdClose size={24} />
         </button>
-        {note._id ? (
-          <NoteManagementForm note={note} onSubmit={handleSubmit} />
-        ) : (
-          <NoteManagementForm onSubmit={handleSubmit} />
-        )}
+        <NoteManagementForm note={note} onSubmit={handleSubmit} />
       </div>
     </div>
   );
