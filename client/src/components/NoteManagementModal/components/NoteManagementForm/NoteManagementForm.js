@@ -15,6 +15,14 @@ const NoteManagementForm = ({
     onSubmit({ title, content });
   };
 
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="note-form">
       <h2 className="note-form__title">
@@ -27,7 +35,7 @@ const NoteManagementForm = ({
         className="note-form__input"
         required
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleTitleChange}
       />
       <textarea
         name="content"
@@ -35,7 +43,7 @@ const NoteManagementForm = ({
         className="note-form__textarea"
         required
         value={content}
-        onChange={(e) => setContent(e.target.value)}
+        onChange={handleContentChange}
       />
       <button className="note-form__button" type="submit">
         {isNewNote ? " Add Note" : "Update Note"}
