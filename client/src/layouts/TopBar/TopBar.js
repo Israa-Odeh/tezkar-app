@@ -2,10 +2,12 @@ import { useState } from "react";
 import { RiStickyNoteAddLine } from "react-icons/ri";
 import stickyNote from "images/stickyNote.png";
 import { SearchBar, NoteManagementModal } from "components";
+import { useNoteContext } from "contexts/NoteContext";
 import "./topBar.css";
 
-const TopBar = ({ onCreateNote, onSearch }) => {
+const TopBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { handleCreateNote, handleSearchNotes } = useNoteContext();
 
   const handleModalClose = () => setIsModalOpen(false);
   const handleModalOpen = () => setIsModalOpen(true);
@@ -24,7 +26,7 @@ const TopBar = ({ onCreateNote, onSearch }) => {
         <h1 className="topbar__title">Tezkar</h1>
       </div>
       <div className="topbar__controls">
-        <SearchBar onSearch={onSearch} />
+        <SearchBar onSearch={handleSearchNotes} />
         <button
           className="topbar__add-note-button"
           type="button"
@@ -36,7 +38,7 @@ const TopBar = ({ onCreateNote, onSearch }) => {
 
       {isModalOpen && (
         <NoteManagementModal
-          onSubmit={onCreateNote}
+          onSubmit={handleCreateNote}
           onClose={handleModalClose}
         />
       )}

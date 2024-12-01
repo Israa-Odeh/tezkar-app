@@ -1,15 +1,11 @@
+import { useNoteContext } from "contexts/NoteContext";
 import { NoteList } from "./components";
 import loadingGif from "images/loading.gif";
 import errorGif from "images/error.gif";
 import "./noteKeeper.css";
 
-const NoteKeeper = ({
-  loading,
-  fetchError,
-  notes,
-  handleUpdateNote,
-  handleDeleteNote,
-}) => {
+const NoteKeeper = () => {
+  const { loading, fetchError } = useNoteContext();
   return (
     <>
       {loading && (
@@ -41,13 +37,7 @@ const NoteKeeper = ({
           </p>
         </div>
       )}
-      {!loading && !fetchError && (
-        <NoteList
-          notes={notes}
-          onEdit={handleUpdateNote}
-          onDelete={handleDeleteNote}
-        />
-      )}
+      {!loading && !fetchError && <NoteList />}
     </>
   );
 };

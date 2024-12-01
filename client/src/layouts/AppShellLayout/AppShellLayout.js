@@ -1,37 +1,15 @@
-import useNotes from "hooks/useNotes";
+import { NoteProvider } from "contexts/NoteContext";
 import TopBar from "layouts/TopBar";
 import NoteKeeper from "pages/NoteKeeper";
-import { useEffect } from "react";
 
 const AppShellLayout = () => {
-  const {
-    notes,
-    loading,
-    fetchError,
-    operationError,
-    handleCreateNote,
-    handleUpdateNote,
-    handleDeleteNote,
-    handleSearchNotes,
-  } = useNotes();
-
-  useEffect(() => {
-    if (operationError) {
-      alert(`Error: ${operationError}`);
-    }
-  }, [operationError]);
-
   return (
-    <div className="app">
-      <TopBar onCreateNote={handleCreateNote} onSearch={handleSearchNotes} />
-      <NoteKeeper
-        loading={loading}
-        fetchError={fetchError}
-        notes={notes}
-        handleUpdateNote={handleUpdateNote}
-        handleDeleteNote={handleDeleteNote}
-      />
-    </div>
+    <NoteProvider>
+      <div className="app">
+        <TopBar />
+        <NoteKeeper />
+      </div>
+    </NoteProvider>
   );
 };
 

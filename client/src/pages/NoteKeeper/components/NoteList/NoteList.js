@@ -1,11 +1,13 @@
+import { useNoteContext } from "contexts/NoteContext";
 import Note from "../Note";
 import "./noteList.css";
 
-const NoteList = ({ notes, onEdit, onDelete }) => {
+const NoteList = () => {
+  const { notes } = useNoteContext();
   return (
     <div className="note-list">
       {notes.map((note) => (
-        <Note key={note._id} note={note} onEdit={onEdit} onDelete={onDelete} />
+        <Note key={note._id} note={note} />
       ))}
     </div>
   );

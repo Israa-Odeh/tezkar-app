@@ -1,10 +1,12 @@
+import { useNoteContext } from "contexts/NoteContext";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { ConfirmationDialog, NoteManagementModal } from "components";
 import { formatDate } from "utils/formatDate";
 import "./note.css";
 
-const Note = ({ note, onEdit, onDelete }) => {
+const Note = ({ note }) => {
+  const { handleUpdateNote, handleDeleteNote } = useNoteContext();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,12 +22,12 @@ const Note = ({ note, onEdit, onDelete }) => {
   };
 
   const handleConfirmDelete = () => {
-    onDelete(note._id);
+    handleDeleteNote(note._id);
     setShowConfirmation(false);
   };
 
   const handleEdit = (noteData) => {
-    onEdit(note._id, noteData);
+    handleUpdateNote(note._id, noteData);
   };
 
   return (
